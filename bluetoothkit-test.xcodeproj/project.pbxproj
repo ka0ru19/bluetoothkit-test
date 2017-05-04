@@ -8,22 +8,42 @@
 
 /* Begin PBXBuildFile section */
 		6391D5FC1EBAD32A00DC9D59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6391D5FB1EBAD32A00DC9D59 /* AppDelegate.swift */; };
-		6391D5FE1EBAD32A00DC9D59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6391D5FD1EBAD32A00DC9D59 /* ViewController.swift */; };
-		6391D6011EBAD32A00DC9D59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6391D5FF1EBAD32A00DC9D59 /* Main.storyboard */; };
 		6391D6041EBAD32A00DC9D59 /* bluetoothkit_test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6391D6021EBAD32A00DC9D59 /* bluetoothkit_test.xcdatamodeld */; };
 		6391D6061EBAD32A00DC9D59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6391D6051EBAD32A00DC9D59 /* Assets.xcassets */; };
 		6391D6091EBAD32A00DC9D59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6391D6071EBAD32A00DC9D59 /* LaunchScreen.storyboard */; };
+		6391D6231EBB139300DC9D59 /* CentralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6391D6161EBB139300DC9D59 /* CentralViewController.swift */; };
+		6391D6241EBB139300DC9D59 /* PeripheralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6391D6171EBB139300DC9D59 /* PeripheralViewController.swift */; };
+		6391D6251EBB139300DC9D59 /* RemotePeripheralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6391D6181EBB139300DC9D59 /* RemotePeripheralViewController.swift */; };
+		6391D6261EBB139300DC9D59 /* RoleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6391D6191EBB139300DC9D59 /* RoleSelectionViewController.swift */; };
+		6391D6281EBB139300DC9D59 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6391D61C1EBB139300DC9D59 /* Colors.swift */; };
+		6391D6291EBB139300DC9D59 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6391D61D1EBB139300DC9D59 /* Logger.swift */; };
+		6391D62A1EBB139300DC9D59 /* AvailabilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6391D61F1EBB139300DC9D59 /* AvailabilityView.swift */; };
+		6391D62B1EBB139300DC9D59 /* NSData+NumberOfBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6391D6211EBB139300DC9D59 /* NSData+NumberOfBytes.swift */; };
+		6391D62C1EBB139300DC9D59 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6391D6221EBB139300DC9D59 /* UIImage+Color.swift */; };
+		6391D65D1EBB199B00DC9D59 /* AvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6391D65C1EBB199B00DC9D59 /* AvailabilityViewController.swift */; };
+		6DA4C5EE7CD78F40AB63E0F4 /* Pods_bluetoothkit_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3A83243AF30B0A1AFA37D4A /* Pods_bluetoothkit_test.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		618A3BD1160B12D9AE9F13DC /* Pods-bluetoothkit-test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bluetoothkit-test.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bluetoothkit-test/Pods-bluetoothkit-test.debug.xcconfig"; sourceTree = "<group>"; };
 		6391D5F81EBAD32A00DC9D59 /* bluetoothkit-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bluetoothkit-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6391D5FB1EBAD32A00DC9D59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6391D5FD1EBAD32A00DC9D59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6391D6001EBAD32A00DC9D59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6391D6031EBAD32A00DC9D59 /* bluetoothkit_test.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = bluetoothkit_test.xcdatamodel; sourceTree = "<group>"; };
 		6391D6051EBAD32A00DC9D59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6391D6081EBAD32A00DC9D59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6391D60A1EBAD32A00DC9D59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6391D6161EBB139300DC9D59 /* CentralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralViewController.swift; sourceTree = "<group>"; };
+		6391D6171EBB139300DC9D59 /* PeripheralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralViewController.swift; sourceTree = "<group>"; };
+		6391D6181EBB139300DC9D59 /* RemotePeripheralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemotePeripheralViewController.swift; sourceTree = "<group>"; };
+		6391D6191EBB139300DC9D59 /* RoleSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleSelectionViewController.swift; sourceTree = "<group>"; };
+		6391D61C1EBB139300DC9D59 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		6391D61D1EBB139300DC9D59 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		6391D61F1EBB139300DC9D59 /* AvailabilityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityView.swift; sourceTree = "<group>"; };
+		6391D6211EBB139300DC9D59 /* NSData+NumberOfBytes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+NumberOfBytes.swift"; sourceTree = "<group>"; };
+		6391D6221EBB139300DC9D59 /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
+		6391D65C1EBB199B00DC9D59 /* AvailabilityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityViewController.swift; sourceTree = "<group>"; };
+		A3A83243AF30B0A1AFA37D4A /* Pods_bluetoothkit_test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bluetoothkit_test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E81C888A21E4A780744CB68B /* Pods-bluetoothkit-test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bluetoothkit-test.release.xcconfig"; path = "Pods/Target Support Files/Pods-bluetoothkit-test/Pods-bluetoothkit-test.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +51,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DA4C5EE7CD78F40AB63E0F4 /* Pods_bluetoothkit_test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3058BDCCAD6FA5FE2CFFD1AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A3A83243AF30B0A1AFA37D4A /* Pods_bluetoothkit_test.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		55D3C7700DB8BB1183DE4654 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				618A3BD1160B12D9AE9F13DC /* Pods-bluetoothkit-test.debug.xcconfig */,
+				E81C888A21E4A780744CB68B /* Pods-bluetoothkit-test.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6391D5EF1EBAD32A00DC9D59 = {
 			isa = PBXGroup;
 			children = (
 				6391D5FA1EBAD32A00DC9D59 /* bluetoothkit-test */,
 				6391D5F91EBAD32A00DC9D59 /* Products */,
+				55D3C7700DB8BB1183DE4654 /* Pods */,
+				3058BDCCAD6FA5FE2CFFD1AA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,14 +97,62 @@
 			isa = PBXGroup;
 			children = (
 				6391D5FB1EBAD32A00DC9D59 /* AppDelegate.swift */,
-				6391D5FD1EBAD32A00DC9D59 /* ViewController.swift */,
-				6391D5FF1EBAD32A00DC9D59 /* Main.storyboard */,
+				6391D6151EBB139300DC9D59 /* View Controllers */,
+				6391D61A1EBB139300DC9D59 /* Global */,
+				6391D61E1EBB139300DC9D59 /* Views */,
+				6391D6201EBB139300DC9D59 /* Extensions */,
+				6391D65B1EBB199B00DC9D59 /* Protocols */,
 				6391D6051EBAD32A00DC9D59 /* Assets.xcassets */,
 				6391D6071EBAD32A00DC9D59 /* LaunchScreen.storyboard */,
 				6391D60A1EBAD32A00DC9D59 /* Info.plist */,
 				6391D6021EBAD32A00DC9D59 /* bluetoothkit_test.xcdatamodeld */,
 			);
 			path = "bluetoothkit-test";
+			sourceTree = "<group>";
+		};
+		6391D6151EBB139300DC9D59 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6391D6161EBB139300DC9D59 /* CentralViewController.swift */,
+				6391D6171EBB139300DC9D59 /* PeripheralViewController.swift */,
+				6391D6181EBB139300DC9D59 /* RemotePeripheralViewController.swift */,
+				6391D6191EBB139300DC9D59 /* RoleSelectionViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		6391D61A1EBB139300DC9D59 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				6391D61C1EBB139300DC9D59 /* Colors.swift */,
+				6391D61D1EBB139300DC9D59 /* Logger.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		6391D61E1EBB139300DC9D59 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6391D61F1EBB139300DC9D59 /* AvailabilityView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6391D6201EBB139300DC9D59 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6391D6211EBB139300DC9D59 /* NSData+NumberOfBytes.swift */,
+				6391D6221EBB139300DC9D59 /* UIImage+Color.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6391D65B1EBB199B00DC9D59 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				6391D65C1EBB199B00DC9D59 /* AvailabilityViewController.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +162,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6391D60D1EBAD32A00DC9D59 /* Build configuration list for PBXNativeTarget "bluetoothkit-test" */;
 			buildPhases = (
+				99213AD87ED44EF022824CE4 /* [CP] Check Pods Manifest.lock */,
 				6391D5F41EBAD32A00DC9D59 /* Sources */,
 				6391D5F51EBAD32A00DC9D59 /* Frameworks */,
 				6391D5F61EBAD32A00DC9D59 /* Resources */,
+				53EC3E342349BDB7B6D80B26 /* [CP] Embed Pods Frameworks */,
+				46D146012B4C42EDA0EB5E82 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -100,6 +191,7 @@
 					6391D5F71EBAD32A00DC9D59 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 44KX7M22LP;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -129,34 +221,82 @@
 			files = (
 				6391D6091EBAD32A00DC9D59 /* LaunchScreen.storyboard in Resources */,
 				6391D6061EBAD32A00DC9D59 /* Assets.xcassets in Resources */,
-				6391D6011EBAD32A00DC9D59 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		46D146012B4C42EDA0EB5E82 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-bluetoothkit-test/Pods-bluetoothkit-test-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		53EC3E342349BDB7B6D80B26 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-bluetoothkit-test/Pods-bluetoothkit-test-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99213AD87ED44EF022824CE4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6391D5F41EBAD32A00DC9D59 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6391D5FE1EBAD32A00DC9D59 /* ViewController.swift in Sources */,
+				6391D6241EBB139300DC9D59 /* PeripheralViewController.swift in Sources */,
+				6391D6281EBB139300DC9D59 /* Colors.swift in Sources */,
 				6391D5FC1EBAD32A00DC9D59 /* AppDelegate.swift in Sources */,
+				6391D62A1EBB139300DC9D59 /* AvailabilityView.swift in Sources */,
+				6391D6231EBB139300DC9D59 /* CentralViewController.swift in Sources */,
+				6391D62C1EBB139300DC9D59 /* UIImage+Color.swift in Sources */,
+				6391D65D1EBB199B00DC9D59 /* AvailabilityViewController.swift in Sources */,
+				6391D6291EBB139300DC9D59 /* Logger.swift in Sources */,
+				6391D62B1EBB139300DC9D59 /* NSData+NumberOfBytes.swift in Sources */,
+				6391D6251EBB139300DC9D59 /* RemotePeripheralViewController.swift in Sources */,
 				6391D6041EBAD32A00DC9D59 /* bluetoothkit_test.xcdatamodeld in Sources */,
+				6391D6261EBB139300DC9D59 /* RoleSelectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6391D5FF1EBAD32A00DC9D59 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6391D6001EBAD32A00DC9D59 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6391D6071EBAD32A00DC9D59 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -209,7 +349,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -253,7 +393,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -263,27 +403,35 @@
 		};
 		6391D60E1EBAD32A00DC9D59 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 618A3BD1160B12D9AE9F13DC /* Pods-bluetoothkit-test.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 44KX7M22LP;
 				INFOPLIST_FILE = "bluetoothkit-test/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wataru.bluetoothkit-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		6391D60F1EBAD32A00DC9D59 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E81C888A21E4A780744CB68B /* Pods-bluetoothkit-test.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 44KX7M22LP;
 				INFOPLIST_FILE = "bluetoothkit-test/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wataru.bluetoothkit-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -306,6 +454,7 @@
 				6391D60F1EBAD32A00DC9D59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -1,0 +1,18 @@
+PODS:
+  - BluetoothKit (0.2.1)
+  - CryptoSwift (0.6.9)
+  - SnapKit (3.2.0)
+
+DEPENDENCIES:
+  - BluetoothKit (~> 0.2.0)
+  - CryptoSwift
+  - SnapKit (~> 3.2.0)
+
+SPEC CHECKSUMS:
+  BluetoothKit: c1dfd8f529a1d4d2c0778b97a8937b5b68c75395
+  CryptoSwift: a22f6ba238e9ce4d26ee7bf45b9ed82e7122d4a0
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+
+PODFILE CHECKSUM: 9a36a2a9cc3b3c3136c87e93c9332e34c5366db5
+
+COCOAPODS: 1.1.1
