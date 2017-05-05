@@ -97,8 +97,8 @@ internal class RemotePeripheralViewController: UIViewController, BKRemotePeriphe
 
     internal func remotePeer(_ remotePeer: BKRemotePeer, didSendArbitraryData data: Data) {
         let str: String! = String(data: data, encoding: .utf8)
-        count = Int(str) ?? 99
-        Logger.log(str)
+        if str == "+1" { count += 1 }
+        Logger.log(String(count))
         print("Received data of length: \(data.count) with hash: \(data.md5().toHexString())")
     }
 
@@ -112,8 +112,8 @@ internal class RemotePeripheralViewController: UIViewController, BKRemotePeriphe
     @objc fileprivate func sendData() {
 //        let numberOfBytesToSend: Int = Int(arc4random_uniform(950) + 50)
         count += 1
-        let countStr = String(count)
-        let data = countStr.data(using: .utf8)!
+        let str = "+1"
+        let data = str.data(using: .utf8)!
 //        let data = Data.dataWithNumberOfBytes(numberOfBytesToSend)
 //        print("Prepared \(numberOfBytesToSend) bytes with MD5 hash: \(data.md5().toHexString())")
         print("Sending to \(remotePeripheral)")

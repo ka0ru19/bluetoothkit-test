@@ -94,8 +94,8 @@ internal class PeripheralViewController: UIViewController, AvailabilityViewContr
     // データの送信
     @objc fileprivate func sendData() {
         count += 1
-        let countStr = String(count)
-        let data = countStr.data(using: .utf8)!
+        let str = String("+1")
+        let data = str!.data(using: .utf8)!
         for remoteCentral in peripheral.connectedRemoteCentrals {
             print("Sending to \(remoteCentral)")
             peripheral.sendData(data, toRemotePeer: remoteCentral) { data, remoteCentral, error in
@@ -125,8 +125,8 @@ internal class PeripheralViewController: UIViewController, AvailabilityViewContr
 
     func remotePeer(_ remotePeer: BKRemotePeer, didSendArbitraryData data: Data) {
         let str: String! = String(data: data, encoding: .utf8)
-        count = Int(str) ?? 88
-        Logger.log(str)
+        if str == "+1" { count += 1 }
+        Logger.log(String(count))
         print("Received data of length: \(data.count) with hash: \(data.md5().toHexString())")
     }
 
