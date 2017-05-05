@@ -40,6 +40,8 @@ internal class RemotePeripheralViewController: UIViewController, BKRemotePeriphe
 
     fileprivate let logTextView = UITextView()
     fileprivate lazy var sendDataBarButtonItem: UIBarButtonItem! = { UIBarButtonItem(title: "Send Data", style: UIBarButtonItemStyle.plain, target: self, action: #selector(RemotePeripheralViewController.sendData)) }()
+    
+    var count = 0
 
     // MARK: Initialization
 
@@ -95,6 +97,7 @@ internal class RemotePeripheralViewController: UIViewController, BKRemotePeriphe
 
     internal func remotePeer(_ remotePeer: BKRemotePeer, didSendArbitraryData data: Data) {
         let str: String! = String(data: data, encoding: .utf8)
+        count = Int(str) ?? 99
         Logger.log(str)
         print("Received data of length: \(data.count) with hash: \(data.md5().toHexString())")
     }
@@ -108,7 +111,9 @@ internal class RemotePeripheralViewController: UIViewController, BKRemotePeriphe
     // データの送信
     @objc fileprivate func sendData() {
 //        let numberOfBytesToSend: Int = Int(arc4random_uniform(950) + 50)
-        let data = "いのっちc".data(using: .utf8)!
+        count += 1
+        let countStr = String(count)
+        let data = countStr.data(using: .utf8)!
 //        let data = Data.dataWithNumberOfBytes(numberOfBytesToSend)
 //        print("Prepared \(numberOfBytesToSend) bytes with MD5 hash: \(data.md5().toHexString())")
         print("Sending to \(remotePeripheral)")

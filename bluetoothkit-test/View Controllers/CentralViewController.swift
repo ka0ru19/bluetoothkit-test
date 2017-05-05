@@ -26,7 +26,7 @@ import UIKit
 import BluetoothKit
 import CoreBluetooth
 
-internal class CentralViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, BKCentralDelegate, AvailabilityViewController, RemotePeripheralViewControllerDelegate {
+internal class CentralViewController: UIViewController, BKCentralDelegate, AvailabilityViewController, RemotePeripheralViewControllerDelegate {
 
     // MARK: Properties
 
@@ -124,36 +124,6 @@ internal class CentralViewController: UIViewController, UITableViewDataSource, U
         })
     }
 
-    // MARK: UITableViewDataSource
-
-    internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return discoveries.count
-    }
-
-    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: discoveriesTableViewCellIdentifier, for: indexPath)
-        let discovery = discoveries[indexPath.row]
-        cell.textLabel?.text = discovery.localName != nil ? discovery.localName : discovery.remotePeripheral.name
-        return cell
-    }
-
-    // MARK: UITableViewDelegate
-
-    internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.isUserInteractionEnabled = false
-        central.connect(remotePeripheral: discoveries[indexPath.row].remotePeripheral) { remotePeripheral, error in
-            tableView.isUserInteractionEnabled = true
-            guard error == nil else {
-                print("Error connecting peripheral: \(error)")
-                tableView.deselectRow(at: indexPath, animated: true)
-                return
-            }
-            let remotePeripheralViewController = RemotePeripheralViewController(central: self.central, remotePeripheral: remotePeripheral)
-            remotePeripheralViewController.delegate = self
-            self.navigationController?.pushViewController(remotePeripheralViewController, animated: true)
-        }
-    }
-
     // MARK: BKAvailabilityObserver
 
     internal func availabilityObserver(_ availabilityObservable: BKAvailabilityObservable, availabilityDidChange availability: BKAvailability) {
@@ -182,4 +152,37 @@ internal class CentralViewController: UIViewController, UITableViewDataSource, U
         }
     }
 
+}
+
+extension CentralViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    // MARK: UITableViewDataSource
+    
+    internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return discoveries.count
+    }
+    
+    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: discoveriesTableViewCellIdentifier, for: indexPath)
+        let discovery = discoveries[indexPath.row]
+        cell.textLabel?.text = discovery.localName != nil ? discovery.localName : discovery.remotePeripheral.name
+        return cell
+    }
+    
+    // MARK: UITableViewDelegate
+    
+    internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.isUserInteractionEnabled = false
+        central.connect(remotePeripheral: discoveries[indexPath.row].remotePeripheral) { remotePeripheral, error in
+            tableView.isUserInteractionEnabled = true
+            guard error == nil else {
+                print("Error connecting peripheral: \(error)")
+                tableView.deselectRow(at: indexPath, animated: true)
+                return
+            }
+            let remotePeripheralViewController = RemotePeripheralViewController(central: self.central, remotePeripheral: remotePeripheral)
+            remotePeripheralViewController.delegate = self
+            self.navigationController?.pushViewController(remotePeripheralViewController, animated: true)
+        }
+    }
 }

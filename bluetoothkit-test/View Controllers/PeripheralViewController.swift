@@ -36,6 +36,8 @@ internal class PeripheralViewController: UIViewController, AvailabilityViewContr
     fileprivate let peripheral = BKPeripheral()
     fileprivate let logTextView = UITextView()
     fileprivate lazy var sendDataBarButtonItem: UIBarButtonItem! = { UIBarButtonItem(title: "Send Data", style: UIBarButtonItemStyle.plain, target: self, action: #selector(PeripheralViewController.sendData)) }()
+    
+    var count = 0
 
     // MARK: UIViewController Life Cycle
 
@@ -43,7 +45,7 @@ internal class PeripheralViewController: UIViewController, AvailabilityViewContr
         navigationItem.title = "Peripheral"
         view.backgroundColor = UIColor.white
         Logger.delegate = self
-        applyAvailabilityView()
+        applyAvailabilityView() // 画面下のbluetoothのオンオフのstatusを表示
         logTextView.isEditable = false
         logTextView.alwaysBounceVertical = true
         view.addSubview(logTextView)
@@ -65,6 +67,7 @@ internal class PeripheralViewController: UIViewController, AvailabilityViewContr
             make.leading.trailing.equalTo(view)
             make.bottom.equalTo(availabilityView.snp.top)
         }
+        logTextView.backgroundColor = UIColor.cyan
     }
 
     fileprivate func startPeripheral() {
@@ -90,10 +93,9 @@ internal class PeripheralViewController: UIViewController, AvailabilityViewContr
 
     // データの送信
     @objc fileprivate func sendData() {
-//        let numberOfBytesToSend: Int = Int(arc4random_uniform(950) + 50)
-//        let data = Data.withdataWithNumberOfBytes(numberOfBytesToSend)
-        let data = "いのっちp".data(using: .utf8)!
-//        print("Prepared \(numberOfBytesToSend) bytes with MD5 hash: \(data.md5().toHexString())")
+        count += 1
+        let countStr = String(count)
+        let data = countStr.data(using: .utf8)!
         for remoteCentral in peripheral.connectedRemoteCentrals {
             print("Sending to \(remoteCentral)")
             peripheral.sendData(data, toRemotePeer: remoteCentral) { data, remoteCentral, error in
@@ -123,6 +125,7 @@ internal class PeripheralViewController: UIViewController, AvailabilityViewContr
 
     func remotePeer(_ remotePeer: BKRemotePeer, didSendArbitraryData data: Data) {
         let str: String! = String(data: data, encoding: .utf8)
+        count = Int(str) ?? 88
         Logger.log(str)
         print("Received data of length: \(data.count) with hash: \(data.md5().toHexString())")
     }
