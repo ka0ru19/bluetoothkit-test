@@ -29,13 +29,15 @@ import CryptoSwift
 
 internal class PeripheralViewController: UIViewController, AvailabilityViewController, BKPeripheralDelegate, LoggerDelegate, BKRemotePeerDelegate {
 
+    @IBOutlet weak var textView: UITextView!
+
     // MARK: Properties
 
     internal var availabilityView = AvailabilityView()
 
     fileprivate let peripheral = BKPeripheral()
-    fileprivate let logTextView = UITextView()
-    fileprivate lazy var sendDataBarButtonItem: UIBarButtonItem! = { UIBarButtonItem(title: "Send Data", style: UIBarButtonItemStyle.plain, target: self, action: #selector(PeripheralViewController.sendData)) }()
+//    fileprivate let logTextView = UITextView()
+//    fileprivate lazy var sendDataBarButtonItem: UIBarButtonItem! = { UIBarButtonItem(title: "Send Data", style: UIBarButtonItemStyle.plain, target: self, action: #selector(PeripheralViewController.sendData)) }()
     
     var count = 0
 
@@ -46,13 +48,15 @@ internal class PeripheralViewController: UIViewController, AvailabilityViewContr
         view.backgroundColor = UIColor.white
         Logger.delegate = self
         applyAvailabilityView() // 画面下のbluetoothのオンオフのstatusを表示
-        logTextView.isEditable = false
-        logTextView.alwaysBounceVertical = true
-        view.addSubview(logTextView)
-        applyConstraints()
+//        logTextView.isEditable = false
+//        logTextView.alwaysBounceVertical = true
+        textView.isEditable = false
+        textView.alwaysBounceVertical = true
+//        view.addSubview(logTextView)
+//        applyConstraints()
         startPeripheral()
-        sendDataBarButtonItem.isEnabled = false
-        navigationItem.rightBarButtonItem = sendDataBarButtonItem
+//        sendDataBarButtonItem.isEnabled = false
+//        navigationItem.rightBarButtonItem = sendDataBarButtonItem
     }
 
     deinit {
@@ -61,14 +65,14 @@ internal class PeripheralViewController: UIViewController, AvailabilityViewContr
 
     // MARK: Functions
 
-    fileprivate func applyConstraints() {
-        logTextView.snp.makeConstraints { make in
-            make.top.equalTo(topLayoutGuide.snp.bottom)
-            make.leading.trailing.equalTo(view)
-            make.bottom.equalTo(availabilityView.snp.top)
-        }
-        logTextView.backgroundColor = UIColor.cyan
-    }
+//    fileprivate func applyConstraints() {
+//        logTextView.snp.makeConstraints { make in
+//            make.top.equalTo(topLayoutGuide.snp.bottom)
+//            make.leading.trailing.equalTo(view)
+//            make.bottom.equalTo(availabilityView.snp.top)
+//        }
+//        logTextView.backgroundColor = UIColor.cyan
+//    }
 
     fileprivate func startPeripheral() {
         do {
@@ -86,13 +90,30 @@ internal class PeripheralViewController: UIViewController, AvailabilityViewContr
     }
 
     fileprivate func refreshControls() {
-        sendDataBarButtonItem.isEnabled = peripheral.connectedRemoteCentrals.count > 0
+        navigationItem.rightBarButtonItem?.isEnabled = peripheral.connectedRemoteCentrals.count > 0
+//        sendDataBarButtonItem.isEnabled = peripheral.connectedRemoteCentrals.count > 0
     }
 
     // MARK: Target Actions
 
     // データの送信
-    @objc fileprivate func sendData() {
+//    @objc fileprivate func sendData() {
+//        count += 1
+//        let str = String("+1")
+//        let data = str!.data(using: .utf8)!
+//        for remoteCentral in peripheral.connectedRemoteCentrals {
+//            print("Sending to \(remoteCentral)")
+//            peripheral.sendData(data, toRemotePeer: remoteCentral) { data, remoteCentral, error in
+//                guard error == nil else {
+//                    print("Failed sending to \(remoteCentral)")
+//                    return
+//                }
+//                print("Sent to \(remoteCentral)")
+//            }
+//        }
+//    }
+    
+    @IBAction func sendButton(_ sender: UIBarButtonItem) {
         count += 1
         let str = String("+1")
         let data = str!.data(using: .utf8)!
@@ -106,7 +127,9 @@ internal class PeripheralViewController: UIViewController, AvailabilityViewContr
                 print("Sent to \(remoteCentral)")
             }
         }
+
     }
+    
 
     // MARK: BKPeripheralDelegate
 
@@ -133,12 +156,20 @@ internal class PeripheralViewController: UIViewController, AvailabilityViewContr
     // MARK: LoggerDelegate
 
     internal func loggerDidLogString(_ string: String) {
-        if logTextView.text.characters.count > 0 {
-            logTextView.text = logTextView.text + ("\n" + string)
+//        if logTextView.text.characters.count > 0 {
+//            logTextView.text = logTextView.text + ("\n" + string)
+//        } else {
+//            logTextView.text = string
+//        }
+//        logTextView.scrollRangeToVisible(NSRange(location: logTextView.text.characters.count - 1, length: 1))
+
+        if textView.text.characters.count > 0 {
+            textView.text = textView.text + ("\n" + string)
         } else {
-            logTextView.text = string
+            textView.text = string
         }
-        logTextView.scrollRangeToVisible(NSRange(location: logTextView.text.characters.count - 1, length: 1))
+        textView.scrollRangeToVisible(NSRange(location: textView.text.characters.count - 1, length: 1))
+    
     }
 
 }

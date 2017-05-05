@@ -29,65 +29,66 @@ internal class RoleSelectionViewController: UIViewController {
 
     // MARK: Properties
 
-    fileprivate let offset = CGFloat(20)
-    fileprivate let buttonColor = Colors.darkBlue
-    fileprivate let centralButton = UIButton(type: UIButtonType.custom)
-    fileprivate let peripheralButton = UIButton(type: UIButtonType.custom)
+//    fileprivate let offset = CGFloat(20)
+//    fileprivate let buttonColor = Colors.darkBlue
+//    fileprivate let centralButton = UIButton(type: UIButtonType.custom)
+//    fileprivate let peripheralButton = UIButton(type: UIButtonType.custom)
 
     // MARK: UIViewController Life Cycle
 
     internal override func viewDidLoad() {
         navigationItem.title = "Select Role"
-        view.backgroundColor = UIColor.white
-        centralButton.setTitle("Central", for: UIControlState())
-        peripheralButton.setTitle("Peripheral", for: UIControlState())
-        preparedButtons([ centralButton, peripheralButton ], andAddThemToView: view)
-        applyConstraints()
-        #if os(tvOS)
-            peripheralButton.enabled = false
-        #endif
+//        view.backgroundColor = UIColor.white
+//        centralButton.setTitle("Central", for: UIControlState())
+//        peripheralButton.setTitle("Peripheral", for: UIControlState())
+//        preparedButtons([ centralButton, peripheralButton ], andAddThemToView: view)
+//        applyConstraints()
+//        #if os(tvOS)
+//            peripheralButton.enabled = false
+//        #endif
     }
 
     // MARK: Functions
 
-    fileprivate func preparedButtons(_ buttons: [UIButton], andAddThemToView view: UIView) {
-        for button in buttons {
-            button.setBackgroundImage(UIImage.imageWithColor(buttonColor), for: UIControlState())
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-            #if os(iOS)
-                button.addTarget(self, action: #selector(RoleSelectionViewController.buttonTapped(_:)), for: UIControlEvents.touchUpInside)
-            #elseif os(tvOS)
-                button.addTarget(self, action: #selector(RoleSelectionViewController.buttonTapped(_:)), forControlEvents: UIControlEvents.PrimaryActionTriggered)
-            #endif
-
-            view.addSubview(button)
-        }
-    }
-
-    fileprivate func applyConstraints() {
-        centralButton.snp.makeConstraints { make in
-            make.top.equalTo(topLayoutGuide.snp.bottom).offset(offset)
-            make.leading.equalTo(view).offset(offset)
-            make.trailing.equalTo(view).offset(-offset)
-            make.height.equalTo(peripheralButton)
-        }
-        peripheralButton.snp.makeConstraints { make in
-            make.top.equalTo(centralButton.snp.bottom).offset(offset)
-            make.leading.trailing.equalTo(centralButton)
-            make.bottom.equalTo(view).offset(-offset)
-        }
-    }
+//    fileprivate func preparedButtons(_ buttons: [UIButton], andAddThemToView view: UIView) {
+//        for button in buttons {
+//            button.setBackgroundImage(UIImage.imageWithColor(buttonColor), for: UIControlState())
+//            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
+//            #if os(iOS)
+//                button.addTarget(self, action: #selector(RoleSelectionViewController.buttonTapped(_:)), for: UIControlEvents.touchUpInside)
+//            #elseif os(tvOS)
+//                button.addTarget(self, action: #selector(RoleSelectionViewController.buttonTapped(_:)), forControlEvents: UIControlEvents.PrimaryActionTriggered)
+//            #endif
+//
+//            view.addSubview(button)
+//        }
+//    }
+//
+//    fileprivate func applyConstraints() {
+//        centralButton.snp.makeConstraints { make in
+//            make.top.equalTo(topLayoutGuide.snp.bottom).offset(offset)
+//            make.leading.equalTo(view).offset(offset)
+//            make.trailing.equalTo(view).offset(-offset)
+//            make.height.equalTo(peripheralButton)
+//        }
+//        peripheralButton.snp.makeConstraints { make in
+//            make.top.equalTo(centralButton.snp.bottom).offset(offset)
+//            make.leading.trailing.equalTo(centralButton)
+//            make.bottom.equalTo(view).offset(-offset)
+//        }
+//    }
 
     // MARK: Target Actions
 
-    @objc fileprivate func buttonTapped(_ button: UIButton) {
-        if button == centralButton {
-            navigationController?.pushViewController(CentralViewController(), animated: true)
-        } else if button == peripheralButton {
-            #if os(iOS)
-                navigationController?.pushViewController(PeripheralViewController(), animated: true)
-            #endif
-        }
-    }
+//    @objc fileprivate func buttonTapped(_ button: UIButton) {
+//        if button == centralButton {
+//            navigationController?.pushViewController(CentralViewController(), animated: true)
+//        } else if button == peripheralButton {
+//            #if os(iOS)
+//                navigationController?.pushViewController(PeripheralViewController(), animated: true)
+//            #endif
+//        }
+//    }
+
 
 }

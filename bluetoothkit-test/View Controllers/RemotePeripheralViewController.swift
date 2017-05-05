@@ -32,14 +32,16 @@ internal protocol RemotePeripheralViewControllerDelegate: class {
 
 internal class RemotePeripheralViewController: UIViewController, BKRemotePeripheralDelegate, BKRemotePeerDelegate, LoggerDelegate {
 
+    @IBOutlet weak var textView: UITextView!
+    
     // MARK: Properties
 
     internal weak var delegate: RemotePeripheralViewControllerDelegate?
     internal let central: BKCentral
     internal let remotePeripheral: BKRemotePeripheral
 
-    fileprivate let logTextView = UITextView()
-    fileprivate lazy var sendDataBarButtonItem: UIBarButtonItem! = { UIBarButtonItem(title: "Send Data", style: UIBarButtonItemStyle.plain, target: self, action: #selector(RemotePeripheralViewController.sendData)) }()
+//    fileprivate let logTextView = UITextView()
+//    fileprivate lazy var sendDataBarButtonItem: UIBarButtonItem! = { UIBarButtonItem(title: "Send Data", style: UIBarButtonItemStyle.plain, target: self, action: #selector(RemotePeripheralViewController.sendData)) }()
     
     var count = 0
 
@@ -52,7 +54,7 @@ internal class RemotePeripheralViewController: UIViewController, BKRemotePeriphe
         remotePeripheral.delegate = self
         remotePeripheral.peripheralDelegate = self
     }
-
+//
     internal required init?(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
     }
@@ -61,15 +63,18 @@ internal class RemotePeripheralViewController: UIViewController, BKRemotePeriphe
 
     internal override func viewDidLoad() {
         navigationItem.title = remotePeripheral.name
-        navigationItem.rightBarButtonItem = sendDataBarButtonItem
+//        navigationItem.rightBarButtonItem = sendDataBarButtonItem
         Logger.delegate = self
-        view.addSubview(logTextView)
+//        view.addSubview(logTextView)
+        view.addSubview(textView)
         view.backgroundColor = UIColor.white
         #if os(iOS)
-            logTextView.isEditable = false
+//            logTextView.isEditable = false
+            textView.isEditable = false
         #endif
-        logTextView.alwaysBounceVertical = true
-        applyConstraints()
+//        logTextView.alwaysBounceVertical = true
+        textView.alwaysBounceVertical = true
+//        applyConstraints()
         print("Awaiting data from peripheral")
     }
 
@@ -82,11 +87,11 @@ internal class RemotePeripheralViewController: UIViewController, BKRemotePeriphe
 
     // MARK: Functions
 
-    internal func applyConstraints() {
-        logTextView.snp.makeConstraints { make in
-            make.top.leading.trailing.bottom.equalTo(view)
-        }
-    }
+//    internal func applyConstraints() {
+//        logTextView.snp.makeConstraints { make in
+//            make.top.leading.trailing.bottom.equalTo(view)
+//        }
+//    }
 
     // MARK: BKRemotePeripheralDelegate
 
@@ -109,13 +114,24 @@ internal class RemotePeripheralViewController: UIViewController, BKRemotePeriphe
     // MARK: Target Actions
 
     // データの送信
-    @objc fileprivate func sendData() {
-//        let numberOfBytesToSend: Int = Int(arc4random_uniform(950) + 50)
+//    @objc fileprivate func sendData() {
+//        count += 1
+//        let str = "+1"
+//        let data = str.data(using: .utf8)!
+//        print("Sending to \(remotePeripheral)")
+//        central.sendData(data, toRemotePeer: remotePeripheral) { data, remotePeripheral, error in
+//            guard error == nil else {
+//                print("Failed sending to \(remotePeripheral)")
+//                return
+//            }
+//            print("Sent to \(remotePeripheral)")
+//        }
+//    }
+    
+    @IBAction func sendButton(_ sender: UIBarButtonItem) {
         count += 1
         let str = "+1"
         let data = str.data(using: .utf8)!
-//        let data = Data.dataWithNumberOfBytes(numberOfBytesToSend)
-//        print("Prepared \(numberOfBytesToSend) bytes with MD5 hash: \(data.md5().toHexString())")
         print("Sending to \(remotePeripheral)")
         central.sendData(data, toRemotePeer: remotePeripheral) { data, remotePeripheral, error in
             guard error == nil else {
@@ -124,16 +140,26 @@ internal class RemotePeripheralViewController: UIViewController, BKRemotePeriphe
             }
             print("Sent to \(remotePeripheral)")
         }
+
     }
+    
 
     // MARK: LoggerDelegate
 
     internal func loggerDidLogString(_ string: String) {
-        if logTextView.text.characters.count > 0 {
-            logTextView.text = logTextView.text + ("\n" + string)
+//        if logTextView.text.characters.count > 0 {
+//            logTextView.text = logTextView.text + ("\n" + string)
+//        } else {
+//            logTextView.text = string
+//        }
+//        logTextView.scrollRangeToVisible(NSRange(location: logTextView.text.characters.count - 1, length: 1))
+        
+        if textView.text.characters.count > 0 {
+            textView.text = textView.text + ("\n" + string)
         } else {
-            logTextView.text = string
+            textView.text = string
         }
-        logTextView.scrollRangeToVisible(NSRange(location: logTextView.text.characters.count - 1, length: 1))
+        textView.scrollRangeToVisible(NSRange(location: textView.text.characters.count - 1, length: 1))
+        
     }
 }

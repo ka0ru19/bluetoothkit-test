@@ -27,62 +27,70 @@ import BluetoothKit
 import CoreBluetooth
 
 internal class CentralViewController: UIViewController, BKCentralDelegate, AvailabilityViewController, RemotePeripheralViewControllerDelegate {
-
+    
+    @IBOutlet var tableView: UITableView!
+    
     // MARK: Properties
-
+    
+    // 下のbluetoothのstatus表示
     internal var availabilityView = AvailabilityView()
-
+    
+    // 読み込みのぐるぐる
     fileprivate var activityIndicator: UIActivityIndicatorView? {
         guard let activityIndicator = activityIndicatorBarButtonItem.customView as? UIActivityIndicatorView else {
             return nil
         }
         return activityIndicator
     }
-
+    
     fileprivate let activityIndicatorBarButtonItem = UIBarButtonItem(customView: UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white))
-    fileprivate let discoveriesTableView = UITableView()
+    //    fileprivate let discoveriesTableView = UITableView()
     fileprivate var discoveries = [BKDiscovery]()
     fileprivate let discoveriesTableViewCellIdentifier = "Discoveries Table View Cell Identifier"
     fileprivate let central = BKCentral()
-
+    
     // MARK: UIViewController Life Cycle
-
+    
     internal override func viewDidLoad() {
         view.backgroundColor = UIColor.white
         activityIndicator?.color = UIColor.black
         navigationItem.title = "Central"
         navigationItem.rightBarButtonItem = activityIndicatorBarButtonItem
         applyAvailabilityView()
-        discoveriesTableView.register(UITableViewCell.self, forCellReuseIdentifier: discoveriesTableViewCellIdentifier)
-        discoveriesTableView.dataSource = self
-        discoveriesTableView.delegate = self
-        view.addSubview(discoveriesTableView)
-        applyConstraints()
+        //        discoveriesTableView.register(UITableViewCell.self, forCellReuseIdentifier: discoveriesTableViewCellIdentifier)
+        //        discoveriesTableView.dataSource = self
+        //        discoveriesTableView.delegate = self
+        //        view.addSubview(discoveriesTableView)
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        //        applyConstraints()
         startCentral()
     }
-
+    
     internal override func viewDidAppear(_ animated: Bool) {
         scan()
     }
-
+    
     internal override func viewWillDisappear(_ animated: Bool) {
         central.interruptScan()
     }
-
+    
     deinit {
         _ = try? central.stop()
     }
-
+    
     // MARK: Functions
-
-    fileprivate func applyConstraints() {
-        discoveriesTableView.snp.makeConstraints { make in
-            make.top.equalTo(topLayoutGuide.snp.bottom)
-            make.leading.trailing.equalTo(view)
-            make.bottom.equalTo(availabilityView.snp.top)
-        }
-    }
-
+    
+    //    fileprivate func applyConstraints() {
+    //        discoveriesTableView.snp.makeConstraints { make in
+    //            make.top.equalTo(topLayoutGuide.snp.bottom)
+    //            make.leading.trailing.equalTo(view)
+    //            make.bottom.equalTo(availabilityView.snp.top)
+    //        }
+    //    }
+    
     fileprivate func startCentral() {
         do {
             central.delegate = self
@@ -95,17 +103,19 @@ internal class CentralViewController: UIViewController, BKCentralDelegate, Avail
             print("Error while starting: \(error)")
         }
     }
-
+    
     fileprivate func scan() {
         central.scanContinuouslyWithChangeHandler({ changes, discoveries in
             let indexPathsToRemove = changes.filter({ $0 == .remove(discovery: nil) }).map({ IndexPath(row: self.discoveries.index(of: $0.discovery)!, section: 0) })
             self.discoveries = discoveries
             let indexPathsToInsert = changes.filter({ $0 == .insert(discovery: nil) }).map({ IndexPath(row: self.discoveries.index(of: $0.discovery)!, section: 0) })
             if !indexPathsToRemove.isEmpty {
-                self.discoveriesTableView.deleteRows(at: indexPathsToRemove, with: UITableViewRowAnimation.automatic)
+                //                self.discoveriesTableView.deleteRows(at: indexPathsToRemove, with: UITableViewRowAnimation.automatic)
+                self.tableView.deleteRows(at: indexPathsToRemove, with: UITableViewRowAnimation.automatic)
             }
             if !indexPathsToInsert.isEmpty {
-                self.discoveriesTableView.insertRows(at: indexPathsToInsert, with: UITableViewRowAnimation.automatic)
+                //                self.discoveriesTableView.insertRows(at: indexPathsToInsert, with: UITableViewRowAnimation.automatic)
+                self.tableView.insertRows(at: indexPathsToInsert, with: UITableViewRowAnimation.automatic)
             }
             for insertedDiscovery in changes.filter({ $0 == .insert(discovery: nil) }) {
                 Logger.log("Discovery: \(insertedDiscovery)")
@@ -116,16 +126,17 @@ internal class CentralViewController: UIViewController, BKCentralDelegate, Avail
                 return
             } else if newState == .stopped {
                 self.discoveries.removeAll()
-                self.discoveriesTableView.reloadData()
+                //                self.discoveriesTableView.reloadData()
+                self.tableView.reloadData()
             }
             self.activityIndicator?.stopAnimating()
         }, errorHandler: { error in
             Logger.log("Error from scanning: \(error)")
         })
     }
-
+    
     // MARK: BKAvailabilityObserver
-
+    
     internal func availabilityObserver(_ availabilityObservable: BKAvailabilityObservable, availabilityDidChange availability: BKAvailability) {
         availabilityView.availabilityObserver(availabilityObservable, availabilityDidChange: availability)
         if availability == .available {
@@ -134,16 +145,16 @@ internal class CentralViewController: UIViewController, BKCentralDelegate, Avail
             central.interruptScan()
         }
     }
-
+    
     // MARK: BKCentralDelegate
-
+    
     internal func central(_ central: BKCentral, remotePeripheralDidDisconnect remotePeripheral: BKRemotePeripheral) {
         Logger.log("Remote peripheral did disconnect: \(remotePeripheral)")
         _ = self.navigationController?.popToViewController(self, animated: true)
     }
-
+    
     // MARK: RemotePeripheralViewControllerDelegate
-
+    
     internal func remotePeripheralViewControllerWillDismiss(_ remotePeripheralViewController: RemotePeripheralViewController) {
         do {
             try central.disconnectRemotePeripheral(remotePeripheralViewController.remotePeripheral)
@@ -151,7 +162,17 @@ internal class CentralViewController: UIViewController, BKCentralDelegate, Avail
             Logger.log("Error disconnecting remote peripheral: \(error)")
         }
     }
-
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "toRP" {
+//            let rpVC = segue.destination as! RemotePeripheralViewController
+//            rpVC.delegate = self
+//        }
+//    }
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        let rpVC = storyboard?.instantiateInitialViewController() as! RemotePeripheralViewController
+    //        rpVC.delegate = self
+    //    }
 }
 
 extension CentralViewController: UITableViewDataSource, UITableViewDelegate {
@@ -163,7 +184,8 @@ extension CentralViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: discoveriesTableViewCellIdentifier, for: indexPath)
+        //        let cell = tableView.dequeueReusableCell(withIdentifier: discoveriesTableViewCellIdentifier, for: indexPath)
+        let cell = UITableViewCell()
         let discovery = discoveries[indexPath.row]
         cell.textLabel?.text = discovery.localName != nil ? discovery.localName : discovery.remotePeripheral.name
         return cell
@@ -183,6 +205,10 @@ extension CentralViewController: UITableViewDataSource, UITableViewDelegate {
             let remotePeripheralViewController = RemotePeripheralViewController(central: self.central, remotePeripheral: remotePeripheral)
             remotePeripheralViewController.delegate = self
             self.navigationController?.pushViewController(remotePeripheralViewController, animated: true)
+            
+            //            let remotePeripheralViewController = RemotePeripheralViewController(central: self.central, remotePeripheral: remotePeripheral)
+            //            remotePeripheralViewController.delegate = self
+            //            self.navigationController?.pushViewController(remotePeripheralViewController, animated: true)
         }
     }
 }
